@@ -13,7 +13,7 @@ const SingleArticleCard = (props) => {
 
       <VoteUpdater article_id={article.article_id} votes={article.votes} />
       <p>{article.body}</p>
-      <DisplayComments article_id={article.article_id} />
+      <DisplayComments article_id={article.article_id} user={props.user} />
     </main>
   );
 };

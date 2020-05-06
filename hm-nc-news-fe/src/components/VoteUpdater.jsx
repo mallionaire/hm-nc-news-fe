@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import axios from "axios";
+import ErrorPage from "./ErrorPage";
 
 class VoteUpdater extends Component {
   state = {
     voteDiff: 0,
+    err: ""
   };
 
   handleVoteChange = (voteChange) => {
@@ -23,19 +25,22 @@ class VoteUpdater extends Component {
         inc_votes: voteChange,
       })
       .catch((err) => {
+        this.setState({ err: err.response.data.msg });
         console.log(err);
       });
   };
 
   render() {
-    const { votes } = this.props;
+    const { votes} = this.props;
+    const {err} = this.state 
+    if (err ) return <ErrorPage err={err}/> 
     return (
       <div>
         <button
           onClick={() => {
             this.handleVoteChange(1);
           }}
-          disabled={false}
+          disabled={this.state.voteDiff === 1}
         >
           upVote
         </button>
@@ -44,6 +49,7 @@ class VoteUpdater extends Component {
           onClick={() => {
             this.handleVoteChange(-1);
           }}
+          disabled={this.state.voteDiff === -1}
         >
           downVote
         </button>
@@ -53,3 +59,4 @@ class VoteUpdater extends Component {
 }
 
 export default VoteUpdater;
+

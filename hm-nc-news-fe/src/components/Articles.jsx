@@ -2,12 +2,14 @@ import React, { Component } from "react";
 import axios from "axios";
 import ArticleCard from "./ArticleCard";
 import OrderSelection from "./OrderSelection";
+import ErrorPage from "./ErrorPage";
 
 class Articles extends Component {
   state = {
     articles: [],
     isLoading: true,
     sort_by: null,
+    err: "" 
   };
 
   // pass fuction to OrderSel -> update state & pass that to fetch aticles
@@ -25,6 +27,10 @@ class Articles extends Component {
           articles: data.articles,
           isLoading: false,
         });
+      })
+      .catch((err) => {
+        this.setState({ err: err.response.data.msg, isLoading: false });
+        console.log(err);
       });
   };
 
@@ -32,7 +38,6 @@ class Articles extends Component {
     this.setState({
       sort_by: valueToChange,
     });
-    console.log("ran SelectSort", this.state.sort_by);
   };
 
   componentDidMount() {
@@ -50,8 +55,9 @@ class Articles extends Component {
   }
 
   render() {
-    const { isLoading, articles, sort_by } = this.state;
+    const { isLoading, articles, sort_by, err } = this.state;
     if (isLoading) return <p>loading... </p>;
+    if (err) return <ErrorPage err={err}/> 
     return (
       <section>
         <OrderSelection sort_by={sort_by} selectSort={this.selectSort} />

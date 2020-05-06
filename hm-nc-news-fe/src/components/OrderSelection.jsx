@@ -1,14 +1,8 @@
 import React from "react";
 
-// pass a func on props?
-// pass the resest function on props?
 
 const OrderSelection = (props) => {
   const { selectSort, sort_by } = props;
-
-  // const handleClick = (event) => {
-  //   selectSort(event.target.value);
-  // };
 
   return (
     <div>
@@ -48,4 +42,4 @@ export default OrderSelection;
 
 // make this a form and invoke the function to update parent state on handleSubmit()
 
-// works with onClick but throws a weird react error becuase there;s nodefalutchecked box...? 
+// works with onClick but throws a weird react error becuase there;s no defaultChecked box...? 

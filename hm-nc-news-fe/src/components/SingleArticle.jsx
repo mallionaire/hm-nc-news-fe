@@ -1,24 +1,29 @@
 import React, { Component } from "react";
 import SingleArticleCard from "./SingleArticleCard";
 import axios from "axios";
+import ErrorPage from "./ErrorPage";
 
 class SingleArticle extends Component {
   state = {
     oneArticle: {},
     isLoading: true,
+    err: "",
   };
 
   fetchSingleArticle = () => {
     const { article_id } = this.props;
-    console.log(this.props.article_id);
+
     axios
       .get(`https://hm-nc-news.herokuapp.com/api/articles/${article_id}`)
       .then(({ data }) => {
-        console.log(data);
         this.setState({
           oneArticle: data.article,
           isLoading: false,
         });
+      })
+      .catch((err) => {
+        this.setState({ err: err.response.data.msg, isLoading: false });
+        console.log(err);
       });
   };
 
@@ -34,14 +39,12 @@ class SingleArticle extends Component {
   }
 
   render() {
-    const { oneArticle, isLoading } = this.state;
+    const { oneArticle, isLoading, err } = this.state;
     if (isLoading) return <p>Sure, I'm just loading one Article... </p>;
+    if (err) return <ErrorPage err={err} />;
     return (
       <div>
-        <SingleArticleCard article={oneArticle} />
-        {/* should really be a different articleCard for a single article, becuase this mucks up some of the logic 
-        eg. displays 'read full article' when already on the page as a link, which just send the user to a strange endpoint
-        also - cannot display an article directly from the preview on the homepage, only works if you go through the topics tab. */}
+        <SingleArticleCard article={oneArticle} user={this.props.user} />
       </div>
     );
   }

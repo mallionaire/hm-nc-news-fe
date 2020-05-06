@@ -1,11 +1,15 @@
 import React, { Component } from "react";
 import axios from "axios";
 import VoteUpdater from "./VoteUpdater";
+import AddComment from "./AddComment";
+import DeleteComment from "./DeleteComment";
+import ErrorPage from "./ErrorPage";
 
 class DisplayComments extends Component {
   state = {
     comments: [],
     isLoading: true,
+    err: ""
   };
 
   fetchComments = () => {
@@ -19,6 +23,10 @@ class DisplayComments extends Component {
           comments: data.comments,
           isLoading: false,
         });
+      })
+      .catch((err) => {
+        this.setState({ err: err.response.data.msg });
+        console.log(err);
       });
   };
 
@@ -27,10 +35,17 @@ class DisplayComments extends Component {
   }
 
   render() {
-    const { isLoading, comments } = this.state;
+    const { isLoading, comments, err } = this.state;
+    const { user, article_id } = this.props;
     if (isLoading) return <p>loading comments... </p>;
+    if (err) return <ErrorPage err={err}/> 
     return (
       <div>
+        <AddComment
+          article_id={article_id}
+          fetchComments={this.fetchComments}
+          user={user}
+        />
         {comments.map((comment) => {
           return (
             <ul key={comment.comment_id}>
@@ -44,11 +59,17 @@ class DisplayComments extends Component {
                   comment.votes,
                 ]}
               </h6>
+              {comment.author === user ? (
+                <DeleteComment
+                  user={user}
+                  comment_id={comment.comment_id}
+                  fetchComments={this.fetchComments}
+                />
+              ) : null}
               <VoteUpdater
                 comment_id={comment.comment_id}
                 votes={comment.votes}
               />
-              {/* need to pass comment_id on props and then differenciate between comment and article_id in the voteUpdater... */}
             </ul>
           );
         })}
