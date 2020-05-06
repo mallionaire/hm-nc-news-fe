@@ -9,7 +9,26 @@ class DisplayComments extends Component {
   state = {
     comments: [],
     isLoading: true,
-    err: ""
+    err: "",
+  };
+
+  updateComments = ({ username, body }) => {
+    this.setState({
+      comments: [
+        { author: username, body: body, created_at: Date.now(), votes: 0 },
+        ...this.state.comments,
+      ],
+    });
+    console.log(this.state.comments);
+  };
+
+  filterDeletedComment = (id) => {
+    const newComments = [...this.state.comments];
+    // needs currState 
+    const filteredComments = newComments.filter(comment => {
+     return comment.comment_id !== id
+    })
+    this.setState({ comments: filteredComments})
   };
 
   fetchComments = () => {
@@ -38,12 +57,13 @@ class DisplayComments extends Component {
     const { isLoading, comments, err } = this.state;
     const { user, article_id } = this.props;
     if (isLoading) return <p>loading comments... </p>;
-    if (err) return <ErrorPage err={err}/> 
+    if (err) return <ErrorPage err={err} />;
     return (
       <div>
         <AddComment
           article_id={article_id}
-          fetchComments={this.fetchComments}
+          updateComments={this.updateComments}
+          // fetchComments={this.fetchComments}
           user={user}
         />
         {comments.map((comment) => {

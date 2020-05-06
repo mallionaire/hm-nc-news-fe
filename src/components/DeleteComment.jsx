@@ -23,12 +23,11 @@ const removeComment = (id, fetchComments) => {
   axios
     .delete(`https://hm-nc-news.herokuapp.com/api/comments/${id}`)
     .then(() => {
-      fetchComments();
+      // fetchComments();
     })
     .catch((err) => {
-      // this.setState({ err: err.response.data.msg });
       console.log(err);
     });
 };
 
-// does delete the comment from the API, but doesn't re-fetch them once its been done...
+

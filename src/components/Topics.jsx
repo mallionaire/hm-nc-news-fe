@@ -38,8 +38,8 @@ class Topics extends Component {
         {topics.map((topic) => {
           return (
             <Link to={`/articles/${topic.slug}`} key={topic.slug}>
-              {" "}
-              {topic.slug}{" "}
+              
+              {topic.slug.toUpperCase()}{" "}
             </Link>
           );
         })}

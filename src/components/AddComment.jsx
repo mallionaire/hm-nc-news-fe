@@ -11,7 +11,7 @@ class AddComment extends Component {
 
   render() {
     const { comment, err } = this.state;
-    if(err) return <ErrorPage err={err}/>
+    if (err) return <ErrorPage err={err} />;
     return (
       <form onSubmit={this.postComment}>
         <label>
@@ -31,28 +31,29 @@ class AddComment extends Component {
   };
 
   postComment = (event) => {
-    const { article_id, fetchComments, user } = this.props;
+    const { article_id, updateComments, user } = this.props;
     event.preventDefault();
     const newComment = {
       username: user,
       body: this.state.comment,
     };
+    updateComments(newComment);
     axios
       .post(
         `https://hm-nc-news.herokuapp.com/api/articles/${article_id}/comments`,
         newComment
       )
-      .then(() => {
+      .then(() => {  //
         this.setState({
           comment: "",
         });
-        fetchComments();
+        // fetchComments();
       })
       .catch((err) => {
         this.setState({ err: err.response.data.msg });
         console.log(err);
       });
-    // console.log(newComment, this.props.article_id);
+    console.log(newComment, this.props.article_id);
   };
 }
 
