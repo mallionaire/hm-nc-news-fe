@@ -1,33 +1,61 @@
+@import url(//db.onlinewebfonts.com/c/1e6ec96c95301fa73aa1d026f161a269?family=MarzoW00-Regular);
+@font-face {
+  font-family: "MarzoW00-Regular";
+  src: url("//db.onlinewebfonts.com/t/1e6ec96c95301fa73aa1d026f161a269.eot");
+  src: url("//db.onlinewebfonts.com/t/1e6ec96c95301fa73aa1d026f161a269.eot?#iefix")
+      format("embedded-opentype"),
+    url("//db.onlinewebfonts.com/t/1e6ec96c95301fa73aa1d026f161a269.woff2")
+      format("woff2"),
+    url("//db.onlinewebfonts.com/t/1e6ec96c95301fa73aa1d026f161a269.woff")
+      format("woff"),
+    url("//db.onlinewebfonts.com/t/1e6ec96c95301fa73aa1d026f161a269.ttf")
+      format("truetype"),
+    url("//db.onlinewebfonts.com/t/1e6ec96c95301fa73aa1d026f161a269.svg#MarzoW00-Regular")
+      format("svg");
+}
+
 .App {
   text-align: center;
   background-color: white;
+  color: #6c7c8c;
+  /* font-family: "MarzoW00-Regular"; */
   /* font-family: Andale Mono, monospace; */
 }
 
 header {
-  background-color: #4f8fbf;
+  background-color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   /* font-size: calc(10px + 2vmin); */
-  color: white;
+  color: #2d547c;
+  letter-spacing: 4px;
+  font-family: "MarzoW00-Regular";
   /* position: fixed;
   top: 0;
   width: 100%; */
 }
 
 nav {
-  background-color: #ffe7c3;
-  border-top: 2px solid #2d547c;
-  border-bottom: 2px solid #2d547c;
+  background-color: #d7dadf;
+  border-top: 1px solid #2d547c;
+  border-bottom: 1px solid #2d547c;
   padding: 12px;
-  text-align: right;
-  letter-spacing: 2px;
-  
+  text-align: center;
+  letter-spacing: 3px;
+  color: #6c7c8c;
+  font-weight: lighter;
+  display: inline-block;
+  width: 80%;
 }
+/* nav:hover {
+  background-color: hotpink;
+} */
 
 button {
+
+  
   background-color: #f3bd80; /* Mellow Apricot  */
   border: 1px solid #f7882f;
   border-radius: 8px;
@@ -38,7 +66,7 @@ button {
   display: inline-block;
   font-size: 14px;
   transition-duration: 0.4s;
-  
+  letter-spacing: 1px;
 }
 
 button:hover {
@@ -46,11 +74,102 @@ button:hover {
   /* color: white; */
 }
 
-button:disabled { 
-  
+button:disabled {
+  background-color: rgba(183, 117, 104, 0.568);
 }
 
+h1 {
+  margin: 14px;
+  letter-spacing: 5px;
+  /* font-size: calc(10px + 2vmin); */
+}
+
+h2 {
+  margin: 10px;
+  letter-spacing: 2px;
+  /* font-size: calc(10px + 2vmin); */
+}
+
+h3 {
+  margin: 8px;
+}
+
+div {
+  width: 80%;
+  padding: 5px;
+  margin: 0px 40px;
+}
 .link {
-  font-size: 10px;
-  color: #6B7a8f
+  font-size: 14px;
+  color: #6b7a8f;
+}
+
+.input-text {
+  font-size: 14px;
+  color: #a4b095;
+  /* background-color: #f3bd80; Mellow Apricot  */
+  /* border: 1px solid #f7882f; */
+  /* border-radius: 8px; */
+  /* color: white; */
+  padding: 25px 45px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  transition-duration: 0.4s;
+  letter-spacing: 1px;
+  border-top: 1px solid #a4b095;
+  border-bottom: 1px solid #a4b095;
+  margin: 12px;
+  font-weight: bold;
+  display: inline-block;
+}
+
+.input-field {
+  padding: 12px;
+  margin: 10px;
+  width: 80%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  /* background-color: white;
+  background-image: url('searchicon.png');
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  padding-left: 40px; */
+  /* border-radius: 4px; */
+}
+
+.comments-styling {
+  /* margin: 20%; */
+  width: 100%;
+  color: #d59364;
+  border-bottom: 1px solid #2d547c;
+  text-align: center;
+  margin: 6px;
+  padding: 4px;
+}
+/* .nav-links {
+  background-color: hotpink
+
+} */
+/* .nav-links:hover {
+  background-color: hotpink;
+  font-weight: lighter;
+
+} */
+
+@media only screen and (max-width: 650px) {
+  .App {
+    display: flex;
+    flex-direction: column;
+    margin: 12px;
+  }
+
+  nav {
+    background-color: #a4b095;
+  }
+
+  div {
+    margin: 6px 2px 6px 2px ;
+  }
 }

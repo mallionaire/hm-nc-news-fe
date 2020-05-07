@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import ArticleCard from "./ArticleCard";
 import OrderSelection from "./OrderSelection";
-import ErrorPage from "./ErrorPage";
+import ErrorPage from "../websiteStructure/ErrorPage";
 
 class Articles extends Component {
   state = {

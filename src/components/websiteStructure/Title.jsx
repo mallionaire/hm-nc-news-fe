@@ -2,9 +2,9 @@ import React from "react";
 
 const Title = ({ user }) => {
   return (
-    <header>
+    <header >
       <h1>NORTHCODERS NEWS</h1>
-      <h2>Bringing you new, improved News! </h2>
+      <h2 className="link">Bringing you new, improved News! </h2>
       <h3>{`Welcome ${user}`}</h3>
     </header>
   );

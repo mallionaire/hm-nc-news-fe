@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import SingleArticleCard from "./SingleArticleCard";
 import axios from "axios";
-import ErrorPage from "./ErrorPage";
+import ErrorPage from "../websiteStructure/ErrorPage";
 
 class SingleArticle extends Component {
   state = {

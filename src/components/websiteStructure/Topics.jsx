@@ -2,7 +2,7 @@ import React, { Component } from "react";
 // import axios from "axios";
 import { Link } from "@reach/router";
 import ErrorPage from "./ErrorPage";
-import * as api from "../utils/api";
+import * as api from "../../utils/api";
 
 class Topics extends Component {
   state = {
@@ -16,10 +16,9 @@ class Topics extends Component {
     //   .get("https://hm-nc-news.herokuapp.com/api/topics")
     api
       .getTopics()
-      .then(({ data }) => {
-        console.log(data);
+      .then((topics) => {
         this.setState({
-          topics: data.topics,
+          topics: topics,
           isLoading: false,
         });
       })
@@ -38,7 +37,6 @@ class Topics extends Component {
         {topics.map((topic) => {
           return (
             <Link to={`/articles/${topic.slug}`} key={topic.slug}>
-              
               {topic.slug.toUpperCase()}{" "}
             </Link>
           );

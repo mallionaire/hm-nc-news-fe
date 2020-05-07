@@ -2,13 +2,13 @@ import React from "react";
 import axios from "axios";
 
 const DeleteComment = (props) => {
-  const { user, comment_id, fetchComments } = props;
+  const { comment_id, filterDeletedComment } = props;
   return (
     <div>
-      <p>{`${user} wrote this comment ^`} </p>
+      {/* <p>{`${user} wrote this comment ^`} </p> */}
       <button
         onClick={() => {
-          removeComment(comment_id, fetchComments);
+          removeComment(comment_id, filterDeletedComment);
         }}
       >
         Delete Comment
@@ -19,15 +19,11 @@ const DeleteComment = (props) => {
 
 export default DeleteComment;
 
-const removeComment = (id, fetchComments) => {
+const removeComment = (id, filterDeletedComment) => {
+  filterDeletedComment(id);
   axios
     .delete(`https://hm-nc-news.herokuapp.com/api/comments/${id}`)
-    .then(() => {
-      // fetchComments();
-    })
     .catch((err) => {
       console.log(err);
     });
 };
-
-

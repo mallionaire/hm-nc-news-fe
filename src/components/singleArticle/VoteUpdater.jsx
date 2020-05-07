@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import axios from "axios";
-import ErrorPage from "./ErrorPage";
+import ErrorPage from "../websiteStructure/ErrorPage";
 
 class VoteUpdater extends Component {
   state = {
     voteDiff: 0,
-    err: ""
+    err: "",
   };
 
   handleVoteChange = (voteChange) => {
@@ -31,9 +31,9 @@ class VoteUpdater extends Component {
   };
 
   render() {
-    const { votes} = this.props;
-    const {err} = this.state 
-    if (err ) return <ErrorPage err={err}/> 
+    const { votes } = this.props;
+    const { err } = this.state;
+    if (err) return <ErrorPage err={err} />;
     return (
       <div>
         <button
@@ -44,7 +44,7 @@ class VoteUpdater extends Component {
         >
           upVote
         </button>
-        <p>Accurate Votes: {this.state.voteDiff + votes}</p>
+        <p>Votes: {this.state.voteDiff + votes}</p>
         <button
           onClick={() => {
             this.handleVoteChange(-1);
@@ -59,4 +59,3 @@ class VoteUpdater extends Component {
 }
 
 export default VoteUpdater;
-

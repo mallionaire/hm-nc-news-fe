@@ -3,7 +3,7 @@ import axios from "axios";
 import VoteUpdater from "./VoteUpdater";
 import AddComment from "./AddComment";
 import DeleteComment from "./DeleteComment";
-import ErrorPage from "./ErrorPage";
+import ErrorPage from "../websiteStructure/ErrorPage";
 
 class DisplayComments extends Component {
   state = {
@@ -12,23 +12,21 @@ class DisplayComments extends Component {
     err: "",
   };
 
-  updateComments = ({ username, body }) => {
-    this.setState({
-      comments: [
-        { author: username, body: body, created_at: Date.now(), votes: 0 },
-        ...this.state.comments,
-      ],
+  updateComments = (commentToAdd) => {
+    console.log(commentToAdd);
+    this.setState((currState) => {
+      return { comments: [commentToAdd, ...currState.comments] };
     });
-    console.log(this.state.comments);
   };
 
   filterDeletedComment = (id) => {
-    const newComments = [...this.state.comments];
-    // needs currState 
-    const filteredComments = newComments.filter(comment => {
-     return comment.comment_id !== id
-    })
-    this.setState({ comments: filteredComments})
+    this.setState((currState) => {
+      return {
+        comments: [...currState.comments].filter((comment) => {
+          return comment.comment_id !== id;
+        }),
+      };
+    });
   };
 
   fetchComments = () => {
@@ -63,12 +61,12 @@ class DisplayComments extends Component {
         <AddComment
           article_id={article_id}
           updateComments={this.updateComments}
-          // fetchComments={this.fetchComments}
+          
           user={user}
         />
         {comments.map((comment) => {
           return (
-            <ul key={comment.comment_id}>
+            <ul key={comment.comment_id} className="comments-styling">
               <h6>
                 {comment.body} <br />
                 {[
@@ -83,7 +81,7 @@ class DisplayComments extends Component {
                 <DeleteComment
                   user={user}
                   comment_id={comment.comment_id}
-                  fetchComments={this.fetchComments}
+                  filterDeletedComment={this.filterDeletedComment}
                 />
               ) : null}
               <VoteUpdater
