@@ -10,10 +10,11 @@ class DisplayComments extends Component {
     comments: [],
     isLoading: true,
     err: "",
+    deletedComment: null,
   };
 
   updateComments = (commentToAdd) => {
-    console.log(commentToAdd);
+    // console.log(commentToAdd);
     this.setState((currState) => {
       return { comments: [commentToAdd, ...currState.comments] };
     });
@@ -22,9 +23,19 @@ class DisplayComments extends Component {
   filterDeletedComment = (id) => {
     this.setState((currState) => {
       return {
+        deletedComment: currState.comments[id],
         comments: [...currState.comments].filter((comment) => {
           return comment.comment_id !== id;
         }),
+      };
+    });
+  };
+
+  restoreComment = (id) => {
+    this.setState((currState) => {
+      return {
+        comments: [currState.deletedComment, ...currState.comments],
+        deletedComment: null,
       };
     });
   };
@@ -61,36 +72,39 @@ class DisplayComments extends Component {
         <AddComment
           article_id={article_id}
           updateComments={this.updateComments}
-          
           user={user}
         />
-        {comments.map((comment) => {
-          return (
-            <ul key={comment.comment_id} className="comments-styling">
-              <h6>
-                {comment.body} <br />
-                {[
-                  comment.author,
-                  " ",
-                  new Date(comment.created_at).toDateString(),
-                  " ",
-                  comment.votes,
-                ]}
-              </h6>
-              {comment.author === user ? (
-                <DeleteComment
-                  user={user}
+        <ul>
+          {comments.map((comment) => {
+            return (
+              <li key={comment.comment_id} className="comments-styling">
+                <p>
+                  {comment.body} <br />
+                  {[
+                    comment.author,
+                    " ",
+                    new Date(comment.created_at).toDateString(),
+                  ]}
+                </p>
+                {comment.author === user ? (
+                  <>
+                    {this.state.deletedComment && <p>Can't delete</p>}
+                    <DeleteComment
+                      user={user}
+                      comment_id={comment.comment_id}
+                      filterDeletedComment={this.filterDeletedComment}
+                      restoreComment={this.restoreComment}
+                    />
+                  </>
+                ) : null}
+                <VoteUpdater
                   comment_id={comment.comment_id}
-                  filterDeletedComment={this.filterDeletedComment}
+                  votes={comment.votes}
                 />
-              ) : null}
-              <VoteUpdater
-                comment_id={comment.comment_id}
-                votes={comment.votes}
-              />
-            </ul>
-          );
-        })}
+              </li>
+            );
+          })}
+        </ul>
       </div>
     );
   }

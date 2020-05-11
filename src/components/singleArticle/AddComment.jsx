@@ -53,13 +53,13 @@ class AddComment extends Component {
         });
         console.log(response);
         updateComments(response.data.comment);
-        // fetchComments();
+       
       })
       .catch((err) => {
         this.setState({ err: err.response.data.msg });
-        console.log(err);
+        
       });
-    // console.log(newComment, this.props.article_id);
+    
   };
 }
 

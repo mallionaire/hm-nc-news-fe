@@ -8,8 +8,10 @@ const SingleArticleCard = (props) => {
     <main>
       <h3>{article.title}</h3>
       <p>
-        {article.topic} {article.author}
+        {article.topic.toUpperCase()} |{" "}
+        {new Date(article.created_at).toDateString()}
       </p>
+      <p>Written by: {article.author}</p>
 
       <VoteUpdater article_id={article.article_id} votes={article.votes} />
       <p>{article.body}</p>

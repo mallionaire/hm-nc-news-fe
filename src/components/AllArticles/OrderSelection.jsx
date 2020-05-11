@@ -1,11 +1,10 @@
 import React from "react";
 
-
 const OrderSelection = (props) => {
   const { selectSort, sort_by } = props;
 
   return (
-    <div>
+    <form>
       <p>Sort articles by: </p>
       <input
         type="radio"
@@ -34,7 +33,7 @@ const OrderSelection = (props) => {
         onChange={(event) => selectSort(event.target.value)}
       />
       Votes
-    </div>
+    </form>
   );
 };
 
@@ -42,4 +41,4 @@ export default OrderSelection;
 
 // make this a form and invoke the function to update parent state on handleSubmit()
 
-// works with onClick but throws a weird react error becuase there;s no defaultChecked box...? 
+// works with onClick but throws a weird react error becuase there;s no defaultChecked box...?

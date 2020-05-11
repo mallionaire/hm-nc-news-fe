@@ -44,7 +44,7 @@ class VoteUpdater extends Component {
         >
           upVote
         </button>
-        <p>Votes: {this.state.voteDiff + votes}</p>
+        <p>{this.state.voteDiff + votes} Votes</p>
         <button
           onClick={() => {
             this.handleVoteChange(-1);

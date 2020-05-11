@@ -2,9 +2,9 @@ import React from "react";
 
 const ErrorPage = ({ err }) => {
   return (
-    <main>
+    <section>
       <h2>{err ? err : "Path not Found"}</h2>
-    </main>
+    </section>
   );
 };
 

@@ -33,7 +33,7 @@ class Topics extends Component {
     if (isLoading) return <p>loading... </p>;
     if (err) return <ErrorPage err={err} />;
     return (
-      <div>
+      <>
         {topics.map((topic) => {
           return (
             <Link to={`/articles/${topic.slug}`} key={topic.slug}>
@@ -41,7 +41,7 @@ class Topics extends Component {
             </Link>
           );
         })}
-      </div>
+      </>
     );
   }
 }

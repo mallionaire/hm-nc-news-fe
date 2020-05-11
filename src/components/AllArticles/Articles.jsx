@@ -9,7 +9,7 @@ class Articles extends Component {
     articles: [],
     isLoading: true,
     sort_by: null,
-    err: "" 
+    err: "",
   };
 
   // pass fuction to OrderSel -> update state & pass that to fetch aticles
@@ -57,7 +57,7 @@ class Articles extends Component {
   render() {
     const { isLoading, articles, sort_by, err } = this.state;
     if (isLoading) return <p>loading... </p>;
-    if (err) return <ErrorPage err={err}/> 
+    if (err) return <ErrorPage err={err} />;
     return (
       <section>
         <OrderSelection sort_by={sort_by} selectSort={this.selectSort} />

@@ -17,7 +17,7 @@
 .App {
   text-align: center;
   background-color: white;
-  color: #6c7c8c;
+  color: #325453;
   /* font-family: "MarzoW00-Regular"; */
   /* font-family: Andale Mono, monospace; */
 }
@@ -31,14 +31,14 @@ header {
   /* font-size: calc(10px + 2vmin); */
   color: #2d547c;
   letter-spacing: 4px;
-  font-family: "MarzoW00-Regular";
+  /* font-family: "MarzoW00-Regular"; */
   /* position: fixed;
   top: 0;
   width: 100%; */
 }
 
 nav {
-  background-color: #d7dadf;
+  background-color: #a9c2eebd;
   border-top: 1px solid #2d547c;
   border-bottom: 1px solid #2d547c;
   padding: 12px;
@@ -54,8 +54,6 @@ nav {
 } */
 
 button {
-
-  
   background-color: #f3bd80; /* Mellow Apricot  */
   border: 1px solid #f7882f;
   border-radius: 8px;
@@ -66,7 +64,8 @@ button {
   display: inline-block;
   font-size: 14px;
   transition-duration: 0.4s;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
+  font-weight: bold;
 }
 
 button:hover {
@@ -94,10 +93,11 @@ h3 {
   margin: 8px;
 }
 
-div {
+.div {
   width: 80%;
   padding: 5px;
-  margin: 0px 40px;
+  /* margin: 0px 40px; */
+  display: inline-block;
 }
 .link {
   font-size: 14px;
@@ -106,7 +106,7 @@ div {
 
 .input-text {
   font-size: 14px;
-  color: #a4b095;
+  color: #586745;
   /* background-color: #f3bd80; Mellow Apricot  */
   /* border: 1px solid #f7882f; */
   /* border-radius: 8px; */
@@ -142,11 +142,28 @@ div {
 .comments-styling {
   /* margin: 20%; */
   width: 100%;
-  color: #d59364;
+  color: #b56f3d;
   border-bottom: 1px solid #2d547c;
   text-align: center;
   margin: 6px;
   padding: 4px;
+}
+.articles {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  /* color: hotpink; */
+  justify-content: space-around;
+  /* margin: 40px; */
+  /* width: 80%; */
+  /* position: inherit; */
+  align-content: center;
+  
+}
+
+.each-article {
+  width: 300px;
+  border-bottom: 1px solid #2d547c;
 }
 /* .nav-links {
   background-color: hotpink
@@ -170,6 +187,6 @@ div {
   }
 
   div {
-    margin: 6px 2px 6px 2px ;
+    margin: 6px 2px 6px 2px;
   }
 }
